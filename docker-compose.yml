@@ -14,6 +14,7 @@ services:
       - 'traefik.http.routers.anime-calendar.entrypoints=websecure'
       - 'traefik.http.routers.anime-calendar.tls.certResolver=letsencrypt'
       - 'traefik.http.routers.anime-calendar.rule=HostRegexp(`anime-calendar.{ip:.*}.traefik.me`)'
+      - 'traefik.http.services.anime-calendar.loadbalancer.server.port=3000'
 networks:
   dokploy-network:
     external: true
