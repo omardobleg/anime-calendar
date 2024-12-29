@@ -2,12 +2,10 @@ FROM denoland/deno:alpine-2.1.4 AS builder
 
 WORKDIR /app
 
-USER deno 
-
 COPY package*.json .
 COPY deno.json .
 
-RUN deno install 
+RUN deno install  
 
 COPY . .
 
@@ -19,6 +17,8 @@ WORKDIR /app
 
 COPY --from=builder /app/build build/
 COPY --from=builder /app/package.json .
+
+USER deno 
 
 EXPOSE 3000
 
