@@ -5,7 +5,7 @@ WORKDIR /app
 COPY package*.json .
 COPY deno.json .
 
-RUN deno install  
+RUN deno install  --allow-scripts
 
 COPY . .
 
