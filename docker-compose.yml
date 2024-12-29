@@ -8,6 +8,12 @@ services:
       - 8080:3000
     networks:
       - dokploy-network
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.anime-calendar.rule=Host(`anime-calendar.traefik.me`)'
+      - 'traefik.http.routers.anime-calendar.entrypoints=websecure'
+      - 'traefik.http.routers.anime-calendar.tls.certResolver=letsencrypt'
+      - 'traefik.http.routers.anime-calendar.rule=HostRegexp(`anime-calendar.{ip:.*}.traefik.me`)'
 networks:
   dokploy-network:
     external: true
