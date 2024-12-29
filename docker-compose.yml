@@ -1,7 +1,7 @@
 services:
   anime-calendar:
     build:
-      context: ./deploy
+      context: ./
       dockerfile: prod.Dockerfile.yml
     restart: always
     ports:
