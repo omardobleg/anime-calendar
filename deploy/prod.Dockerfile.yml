@@ -5,6 +5,7 @@ WORKDIR /app
 USER deno 
 
 COPY package*.json .
+COPY deno.json .
 
 RUN deno install --allow-scripts
 
