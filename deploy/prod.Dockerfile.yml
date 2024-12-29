@@ -5,7 +5,6 @@ WORKDIR /app
 USER deno 
 
 COPY package*.json .
-COPY deno.lock .
 
 RUN deno install 
 
