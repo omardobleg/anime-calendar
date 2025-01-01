@@ -11,8 +11,8 @@ services:
     labels:
       - 'traefik.enable=true'
       - 'traefik.http.routers.anime.entrypoints=web'
-      - 'traefik.http.routers.anime.rule=HostRegexp(`anime.{ip:.*}.traefik.me:81`)'
-      - 'traefik.http.services.anime.loadbalancer.server.port=3000'
+      - 'traefik.http.routers.anime.rule=HostRegexp(`anime.{ip:.*}.traefik.me`)'
+      - 'traefik.http.services.anime.loadbalancer.server.port=${PORT}'
 networks:
   dokploy-network:
     external: true
