@@ -5,7 +5,7 @@
   
 </script>
 
-<div class="inline-flex rounded-lg border border-gray-100 bg-gray-100 p-1">
+<div class="flex-wrap justify-center inline-flex rounded-lg border border-gray-100 bg-gray-100 p-1">
 	{#each weekDays as day, i}
 		<a
 			href="?active={today > i ? (today - i) * -1 : i - today}"

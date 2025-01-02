@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Anime } from '$lib/models/anime-schedule';
-
+	import Badge from "$lib/components/Badge.svelte"
 	let { anime }: { anime: Anime } = $props();
 </script>
 
@@ -15,4 +15,5 @@
 			<a target="_blank" href={anime.url}>{anime.title}</a>
 		</p>
 	</div>
+		<Badge className="self-end me-2 mb-2">{anime.episodes ?? "?"}</Badge>
 </div>
