@@ -1,12 +1,11 @@
-import type { ScheduleResponse } from './models/anime-schedule';
-import { getWeekNumber } from './utils';
+import type { ScheduleResponse } from './models/anime-schedule.ts';
 
 const BASE_URL = 'https://api.jikan.moe/v4/schedules';
 enum WeekDays {
 	'sunday',
 	'monday',
 	'tuesday',
-	'wednesay',
+	'wednesday',
 	'thursday',
 	'friday',
 	'saturday'
