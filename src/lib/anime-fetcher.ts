@@ -1,5 +1,5 @@
 import type { ScheduleResponse } from './models/anime-schedule.ts';
-
+import { ResultAsync } from 'neverthrow';
 const BASE_URL = 'https://api.jikan.moe/v4/schedules';
 enum WeekDays {
 	'sunday',
@@ -10,15 +10,18 @@ enum WeekDays {
 	'friday',
 	'saturday'
 }
-export const getAnimeData = async (
-	fetch: Window['fetch'],
-	date: Date
-): Promise<ScheduleResponse> => {
+export const getAnimeData = (fetch: fetch, date: Date): ResultAsync<ScheduleResponse, Error> => {
 	const params = new URLSearchParams({
 		filter: WeekDays[date.getDay()]
 	});
-
-	const animes = await fetch(`${BASE_URL}?${params}`);
-	const json = await animes.json();
-	return json;
+	console.log('DATE', date.getDay(), WeekDays[date.getDay()]);
+	const animes = ResultAsync.fromPromise<Response, Error>(
+		fetch(`${BASE_URL}?${params}`),
+		() => new Error('Error fetching data from API')
+	);
+	return animes.map(
+		(response: Response) => response.json() as unknown as Promise<ScheduleResponse>
+	);
 };
+
+export type AnimeData = ReturnType<typeof getAnimeData>;
