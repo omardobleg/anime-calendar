@@ -1,19 +1,27 @@
 <script lang="ts">
 	import type { Anime } from '$lib/models/anime-schedule';
-	import Badge from "$lib/components/Badge.svelte"
-	let { anime }: { anime: Anime } = $props();
+	import Badge from '$lib/components/Badge.svelte';
+	import { fade } from 'svelte/transition';
+	let { anime, delay = 10 }: { anime: Anime; delay: number } = $props();
 </script>
 
 <div
-	class="sahdow-lg flex w-full flex-col items-center justify-center overflow-hidden rounded-lg bg-gray-100"
+	in:fade={{ duration: 200, delay }}
+	class="sahdow-lg row-span-4 grid grid-rows-subgrid overflow-hidden rounded-lg bg-gray-100"
 >
-	<div>
-		<img class="h-auto w-full object-cover object-center" alt="" src={anime.images.jpg.image_url} />
+	<div class="row-span-2 flex bg-gray-300">
+		<img
+			class="h-auto w-full object-contain object-center lg:object-none"
+			alt=""
+			src={anime.images.jpg.image_url}
+		/>
 	</div>
-	<div class="py-8 text-center sm:py-6">
+	<div class="row-span-1 py-8 text-center sm:py-6">
 		<p class="mb-2 text-xl font-bold text-gray-700">
 			<a target="_blank" href={anime.url}>{anime.title}</a>
 		</p>
 	</div>
-		<Badge className="self-end me-2 mb-2">{anime.episodes ?? "?"}</Badge>
+	<div class="row-span-1">
+		<Badge className="float-right me-2 mb-2">{anime.episodes ?? '?'}</Badge>
+	</div>
 </div>
