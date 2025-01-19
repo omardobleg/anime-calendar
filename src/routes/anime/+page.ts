@@ -9,6 +9,9 @@ export const load: PageLoad = async ({ url, fetch }) => {
 	const response = await getAnimeData(fetch, date).map((anime) => ({
 		data: [
 			...anime.data
+				// sort alphabetically
+				.sort((a, b) => (a.title > b.title ? 1 : -1))
+				//remove duplicates
 				.reduce((prev, curr) => {
 					prev.set(curr.mal_id, curr);
 					return prev;
