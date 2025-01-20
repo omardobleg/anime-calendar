@@ -9,7 +9,7 @@
 	in:fade={{ duration: 200, delay }}
 	class="sahdow-lg row-span-4 grid grid-rows-subgrid overflow-hidden rounded-lg bg-gray-100 "
 >
-	<div class="row-span-2 flex bg-gray-300 max-h-100 lg:max-h-[25vh] xl:max-h-[30vh] 2xl:max-h-[40vh]">
+	<div class="row-span-2 flex bg-gray-300 max-h-100 lg:max-h-25 xl:max-h-30 2xl:max-h-40">
 		<img
 			class="h-auto w-full object-contain object-center"
 			alt=""
