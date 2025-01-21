@@ -1,9 +1,20 @@
 <script lang="ts">
 	import AnimeCard from '$lib/components/AnimeCard.svelte';
-	import type { ScheduleResponse } from '$lib/models/anime-schedule';
+	import { type Anime, type ScheduleResponse } from '$lib/models/anime-schedule';
+	import { Animes } from '$lib/db/animes.svelte';
+
 	const DELAY_STEP = 20;
 	let { data }: { data: { animes: ScheduleResponse['data'] | null; error: Error | null } } =
 		$props();
+	let animes = $state.raw<Anime[]>([]);
+	const ids = $derived(animes.map((a) => a.mal_id));
+	$effect(() => {
+		const cursor = Animes.find({});
+		animes = cursor.fetch();
+		return () => {
+			cursor.cleanup();
+		};
+	});
 </script>
 
 {#if data.animes}
@@ -11,7 +22,7 @@
 		class="grid grid-cols-1 gap-4 p-5 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-7"
 	>
 		{#each data.animes as anime, index (anime.title)}
-			<AnimeCard delay={index * DELAY_STEP} {anime}></AnimeCard>
+			<AnimeCard fav={ids.includes(anime.mal_id)} delay={index * DELAY_STEP} {anime}></AnimeCard>
 		{/each}
 	</section>
 {:else}

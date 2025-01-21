@@ -1,18 +1,29 @@
 <script lang="ts">
 	import WeekSelector from '$lib/components/WeekSelector.svelte';
 	import { page } from '$app/state';
+	import Badge from '$lib/components/Badge.svelte';
+	import { Animes } from '$lib/db/animes.svelte';
 	let { children } = $props();
 	const active = $derived(() => {
 		const params = page.url.searchParams;
 		return Number(params.get('active') ?? 0);
+	});
+	let totalFavs = $state(0);
+	$effect(() => {
+		const cursor = Animes.find();
+		totalFavs = cursor.count();
+		return () => {
+			cursor.cleanup();
+		};
 	});
 </script>
 
 <header class="border-b border-gray-200 bg-gray-50">
 	<div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
 		<div class="flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between">
-			<div>
+			<div class="inline-flex gap-2">
 				<h1 class="text-2xl font-bold text-gray-900 sm:text-3xl">Anime Page</h1>
+				<Badge icon={'👍'} className="rounded-full my-auto">{totalFavs}</Badge>
 			</div>
 
 			<div class="flex items-center gap-4">
