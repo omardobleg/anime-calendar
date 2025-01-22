@@ -10,7 +10,7 @@
 		<a
 			href="?active={today > i ? (today - i) * -1 : i - today}"
 			class={{
-				'inline-block rounded-md px-4 py-2 text-sm text-gray-500 hover:text-gray-700 focus:relative': true,
+				'font-bold inline-block rounded-md px-4 py-2 text-sm text-gray-700 hover:text-gray-700 focus:relative': true,
 				'bg-white': today + active === i
 			}}
 		>
