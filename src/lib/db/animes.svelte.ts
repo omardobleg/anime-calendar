@@ -1,7 +1,7 @@
 import { Collection } from '@signaldb/core';
 import createLocalStorageAdapter from '@signaldb/localstorage';
 import type { Anime } from '$lib/models/anime-schedule';
-export const Animes = new Collection<Anime>({
+export const Animes = new Collection<Anime, string, Anime>({
 	persistence: createLocalStorageAdapter('animes'),
 	reactivity: {
 		create() {

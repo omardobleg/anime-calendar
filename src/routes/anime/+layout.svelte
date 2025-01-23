@@ -3,6 +3,7 @@
 	import { page } from '$app/state';
 	import Badge from '$lib/components/Badge.svelte';
 	import { Animes } from '$lib/db/animes.svelte';
+	import { toggle,filters } from '$lib/store/filter.store.svelte';
 	let { children } = $props();
 	const active = $derived(() => {
 		const params = page.url.searchParams;
@@ -16,6 +17,7 @@
 			cursor.cleanup();
 		};
 	});
+	const favsMessage = $derived(`${totalFavs} ${filters.faved ? "Filtering" :"" }`)
 </script>
 
 <header class="border-b border-gray-200 bg-gray-50">
@@ -23,7 +25,7 @@
 		<div class="flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between">
 			<div class="inline-flex gap-2">
 				<h1 class="text-2xl font-bold text-gray-900 sm:text-3xl">Anime Page</h1>
-				<Badge icon={'👍'} className="rounded-full my-auto">{totalFavs}</Badge>
+				<Badge onclick={toggle} icon={'👍'} className={`text-base rounded-full my-auto ${filters.faved ? "border-4 border-purple-800" : ""}`}>{favsMessage}</Badge>
 			</div>
 
 			<div class="flex items-center gap-4">

@@ -1,4 +1,5 @@
 import { getAnimeData } from '$lib';
+import type { ScheduleResponse } from '$lib/models/anime-schedule';
 import type { PageLoad } from './$types';
 
 export const load: PageLoad = async ({ url, fetch }) => {
@@ -6,9 +7,9 @@ export const load: PageLoad = async ({ url, fetch }) => {
 	const date = new Date();
 	date.setDate(date.getDate() + active);
 
-	const response = await getAnimeData(fetch, date).map((anime) => ({
+	const response = await getAnimeData(fetch, date).map((anime: ScheduleResponse) => ({
 		data: [
-			...anime.data
+			...anime?.data
 				// sort alphabetically
 				.sort((a, b) => (a.title > b.title ? 1 : -1))
 				//remove duplicates
@@ -23,7 +24,7 @@ export const load: PageLoad = async ({ url, fetch }) => {
 		(data) => ({
 			animes: data.data
 		}),
-		(error) => ({
+		(error: Error) => ({
 			error
 		})
 	);
