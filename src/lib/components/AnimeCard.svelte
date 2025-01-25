@@ -14,7 +14,7 @@
 		fav ? 'border-t-8 border-purple-700' : ''
 	]}
 >
-	<div class="max-h-100 row-span-2 flex bg-gray-300 lg:max-h-25 xl:max-h-30 2xl:max-h-40">
+	<div class="max-h-100 row-span-2 flex bg-gray-300 lg:max-h-[25h] xl:max-h-[30vh] 2xl:max-h-[40vh]">
 		<img
 			class="h-auto w-full object-contain object-center"
 			alt=""
