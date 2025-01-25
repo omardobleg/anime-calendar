@@ -1,13 +1,16 @@
-<script>
+<script lang="ts">
 	let { children, className, onclick } = $props();
 </script>
 
 <button
 	class={[
-		'group relative inline-flex overflow-hidden border border-purple-700 px-4 py-0 focus:outline-none focus:ring',
+		'group relative inline-flex overflow-hidden border border-purple-700 px-4 py-0 focus:ring focus:outline-none',
 		className
 	]}
-	onclick={() => onclick()}
+	onclick={(event: MouseEvent) => {
+		event.stopPropagation();
+		onclick();
+	}}
 	type="button"
 >
 	<span

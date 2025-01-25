@@ -8,7 +8,6 @@
 	let { data }: { data: { animes: ScheduleResponse['data'] | null; error: Error | null } } =
 		$props();
 	let animes = $state.raw<Anime[]>([]);
-	const ids = $derived(animes.map((a) => a.mal_id));
 	$effect(() => {
 		const cursor = Animes.find({});
 		animes = cursor.fetch();
@@ -16,16 +15,15 @@
 			cursor.cleanup();
 		};
 	});
-	const favIds = $derived(animes.map(({mal_id})=>mal_id))
-	const filteredAnimes = $derived(filters.faved ? data.animes?.filter(anime=>favIds.includes(anime.mal_id)):data.animes)
+	const favIds = $derived(animes.map(({ mal_id }) => mal_id));
+	const filteredAnimes = $derived(data.animes);
 </script>
 
 {#if filteredAnimes}
-	<section
-		class="grid grid-cols-1 gap-4 p-5 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-5 xl:grid-cols-7"
-	>
+	<section class="grid gap-4 p-5 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6">
 		{#each filteredAnimes as anime, index (anime.title)}
-			<AnimeCard fav={ids.includes(anime.mal_id)} delay={index * DELAY_STEP} {anime}></AnimeCard>
+			<AnimeCard fav={favIds.includes(anime.mal_id)} {filters} delay={index * DELAY_STEP} {anime}
+			></AnimeCard>
 		{/each}
 	</section>
 {:else}

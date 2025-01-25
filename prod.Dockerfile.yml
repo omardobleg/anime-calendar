@@ -18,7 +18,7 @@ WORKDIR /app
 COPY --from=builder /app/build build/
 COPY --from=builder /app/package.json .
 
-USER deno 
+USER deno
 
 EXPOSE 3000
 

@@ -3,10 +3,10 @@ const getInitialValue = () => {
 	const stored = localStorage.getItem(FILTER_KEY);
 	return stored ? JSON.parse(stored) : stored;
 };
-type Filters = {
+export type Filters = {
 	faved: boolean;
 };
-export let filters = $state<Filters>(getInitialValue() ?? { faved: false });
+export const filters = $state<Filters>(getInitialValue() ?? { faved: false });
 
 export const toggle = () => {
 	filters.faved = !filters.faved;
