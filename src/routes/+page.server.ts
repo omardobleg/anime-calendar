@@ -1,6 +1,6 @@
 import { redirect } from '@sveltejs/kit';
-import type { LayoutServerLoad } from './$types';
+import type { PageServerLoad } from './$types';
 
-export const load: LayoutServerLoad = ({}) => {
+export const load: PageServerLoad = ({}) => {
 	redirect(307, './anime');
 };

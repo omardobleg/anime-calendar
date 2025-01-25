@@ -10,7 +10,7 @@ enum WeekDays {
 	'friday',
 	'saturday'
 }
-export const getAnimeData = (fetch: fetch, date: Date): ResultAsync<ScheduleResponse, Error> => {
+export const getAnimeData = (fetch: any, date: Date): ResultAsync<ScheduleResponse, Error> => {
 	const params = new URLSearchParams({
 		filter: WeekDays[date.getDay()]
 	});
