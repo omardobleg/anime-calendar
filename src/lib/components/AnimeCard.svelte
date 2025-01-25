@@ -65,6 +65,7 @@
 		text-align: center;
 		transition: transform 0.4s;
 		transform-style: preserve-3d;
+		min-height: 100%;
 	}
 	.back {
 		transform: rotateY(180deg);
