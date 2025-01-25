@@ -1,4 +1,4 @@
-FROM denoland/deno:alpine-2.1.7 AS builder
+FROM denoland/deno:ubuntu-2.1.7 AS builder
 
 WORKDIR /app
 
@@ -13,7 +13,7 @@ COPY . .
 
 RUN deno task build
 
-FROM denoland/deno:alpine-2.1.4
+FROM denoland/deno:ubuntu-2.1.7
 
 WORKDIR /app
 
