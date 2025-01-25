@@ -1,5 +1,6 @@
 {
 	"tasks": {
-		"build": "vite build"
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"build": "deno task check && vite build"
 	}
 }

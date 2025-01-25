@@ -2,8 +2,10 @@ FROM denoland/deno:alpine-2.1.7 AS builder
 
 WORKDIR /app
 
+RUN chown deno:deno /app/
+
 COPY package*.json .
-COPY deno.json .
+COPY deno*.json .
 
 RUN deno install  --allow-scripts
 
