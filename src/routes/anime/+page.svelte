@@ -2,7 +2,6 @@
 	import AnimeCard from '$lib/components/AnimeCard.svelte';
 	import { type Anime, type ScheduleResponse } from '$lib/models/anime-schedule';
 	import { Animes } from '$lib/db/animes.svelte';
-	import { filters } from '$lib/store/filter.store.svelte';
 
 	const DELAY_STEP = 20;
 	let { data }: { data: { animes: ScheduleResponse['data'] | null; error: Error | null } } =
@@ -20,10 +19,11 @@
 </script>
 
 {#if filteredAnimes}
-	<section class="grid gap-4 p-5 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 perspective-distant">
+	<section
+		class="grid gap-4 p-5 perspective-distant sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6"
+	>
 		{#each filteredAnimes as anime, index (anime.title)}
-			<AnimeCard fav={favIds.includes(anime.mal_id)} {filters} delay={index * DELAY_STEP} {anime}
-			></AnimeCard>
+			<AnimeCard fav={favIds.includes(anime.mal_id)} delay={index * DELAY_STEP} {anime}></AnimeCard>
 		{/each}
 	</section>
 {:else}

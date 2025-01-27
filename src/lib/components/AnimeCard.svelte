@@ -4,9 +4,10 @@
 	import { fade } from 'svelte/transition';
 	import Button from './Button.svelte';
 	import { toggle } from '$lib/db/animes.svelte';
-	import type { Filters } from '$lib/store/filter.store.svelte';
-	type AnimeCardProps = { fav: boolean; anime: Anime; delay: number; filters: Filters };
-	let { anime, delay = 10, fav, filters }: AnimeCardProps = $props();
+	import { getFiltersContext, type Filters } from '$lib/store/filter.store.svelte';
+	type AnimeCardProps = { fav: boolean; anime: Anime; delay: number };
+	let { anime, delay = 10, fav }: AnimeCardProps = $props();
+	const filters = getFiltersContext();
 	let flipped = $derived(!fav && filters.faved);
 </script>
 

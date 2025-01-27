@@ -3,7 +3,7 @@
 	import { page } from '$app/state';
 	import Badge from '$lib/components/Badge.svelte';
 	import { Animes } from '$lib/db/animes.svelte';
-	import { toggle, filters } from '$lib/store/filter.store.svelte';
+	import { getFiltersContext } from '$lib/store/filter.store.svelte';
 	let { children } = $props();
 	const active = $derived(() => {
 		const params = page.url.searchParams;
@@ -17,16 +17,19 @@
 			cursor.cleanup();
 		};
 	});
+	const filters = getFiltersContext();
 	const favsMessage = $derived(`${totalFavs} ${filters.faved ? 'Filtering' : ''}`);
 </script>
 
-<header class="border-b border-gray-200 bg-gray-50">
-	<div class="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+<header
+	class="sticky -top-16 z-1 flex h-32 w-full items-center border-b border-gray-200 bg-gray-50 shadow-md"
+>
+	<div class="sticky top-0 mx-auto h-16 max-w-screen-xl px-4 sm:px-6 lg:px-8">
 		<div class="flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between">
 			<div class="inline-flex gap-2">
 				<h1 class="text-2xl font-bold text-gray-900 sm:text-3xl">Anime Page</h1>
 				<Badge
-					onclick={toggle}
+					onclick={filters.toggle}
 					icon={'👍'}
 					className={`text-base rounded-full my-auto ${filters.faved ? 'border-4 border-purple-800' : ''}`}
 					>{favsMessage}</Badge
@@ -34,7 +37,7 @@
 			</div>
 
 			<div class="flex items-center gap-4">
-				<nav class="flex items-center justify-center p-6 lg:px-8 max-w-[90vw]" aria-label="Global">
+				<nav class="flex max-w-[90vw] items-center justify-center p-2 lg:px-8" aria-label="Global">
 					<WeekSelector active={active()}></WeekSelector>
 				</nav>
 			</div>
