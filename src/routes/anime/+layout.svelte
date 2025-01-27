@@ -34,7 +34,7 @@
 			</div>
 
 			<div class="flex items-center gap-4">
-				<nav class="flex items-center justify-center p-6 lg:px-8" aria-label="Global">
+				<nav class="flex items-center justify-center p-6 lg:px-8 max-w-[90vw]" aria-label="Global">
 					<WeekSelector active={active()}></WeekSelector>
 				</nav>
 			</div>

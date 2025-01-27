@@ -20,7 +20,7 @@
 </script>
 
 {#if filteredAnimes}
-	<section class="grid gap-4 p-5 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6">
+	<section class="grid gap-4 p-5 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 perspective-distant">
 		{#each filteredAnimes as anime, index (anime.title)}
 			<AnimeCard fav={favIds.includes(anime.mal_id)} {filters} delay={index * DELAY_STEP} {anime}
 			></AnimeCard>
