@@ -2,7 +2,7 @@
 	const { active } = $props<{ active: number }>();
 	const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 	const today = new Date().getDay();
-	let offset = $derived(`calc(((100% - .5rem) / 7 ) * (${active + 1}) + .25rem`);
+	let offset = $derived(`calc(((100% - .5rem) / 7 ) * (${today + active}) + .25rem`);
 </script>
 
 <div
