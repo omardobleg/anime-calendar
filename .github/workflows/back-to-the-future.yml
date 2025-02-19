@@ -4,19 +4,24 @@ on:
   push:
       tags:
       - '*'
+      - '!**SNAPSHOT'
+      - '!**RC'
       branches:
       - master
 
 jobs:
   create-pull-request:
     runs-on: ubuntu-latest
-    if: ${{  !contains( github.ref, 'RC') && !contains( github.ref, 'SNAPSHOT') }}
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           ref: master
+      - name: Imprimir github.ref con debug-action
+        uses: actions/debug@v1
+        with:
+          github_ref: ${{ github.ref }}
       - run: gh pr create -B $DESTINATION -H master --title "Merge master into $DESTINATION" --body "Created by Github action"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
