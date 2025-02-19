@@ -8,7 +8,7 @@ on:
 jobs:
   create-pull-request:
     runs-on: ubuntu-latest
-    if: contains( github.ref, 'master')
+    if: ! contains( github.ref, 'RC') && ! contains( github.ref, 'SNAPSHOT')
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
