@@ -1,24 +1,26 @@
 name: Take master to develo on tag creation
 
-on:  
+on:
   push:
-      tags:
-      - '*'
-      branches:
+    branches:
       - master
+    tags:
+      - '*'
+      - '!**SNAPSHOT'
+      - '!**RC'
 
 jobs:
   create-pull-request:
     runs-on: ubuntu-latest
-    if: ${{  !contains( github.ref, 'RC') && !contains( github.ref, 'SNAPSHOT') }}
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
           ref: master
+      - name: Imprimir github.ref
+        run: echo El valor de github.ref es ${{ github.ref }}
       - run: gh pr create -B $DESTINATION -H master --title "Merge master into $DESTINATION" --body "Created by Github action"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DESTINATION: develop
-        
