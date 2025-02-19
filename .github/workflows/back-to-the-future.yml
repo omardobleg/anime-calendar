@@ -18,10 +18,8 @@ jobs:
         with:
           fetch-depth: 0
           ref: master
-      - name: Imprimir github.ref con debug-action
-        uses: actions/debug@v1
-        with:
-          github_ref: ${{ github.ref }}
+      - name: Imprimir github.ref
+        run: echo El valor de github.ref es ${{ github.ref }}" 
       - run: gh pr create -B $DESTINATION -H master --title "Merge master into $DESTINATION" --body "Created by Github action"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
