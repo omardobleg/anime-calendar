@@ -2,8 +2,10 @@ name: Take master to develo on tag creation
 
 on:  
   push:
-    tags:
+      tags:
       - '*'
+      branches:
+      - master
 
 jobs:
   create-pull-request:
@@ -15,7 +17,7 @@ jobs:
         with:
           fetch-depth: 0
           ref: master
-      - run: gh pr create -B $DESTINATION -H master --title "Merge master into $DESTINATION " --body "Created by Github action"
+      - run: gh pr create -B $DESTINATION -H master --title "Merge master into $DESTINATION" --body "Created by Github action"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DESTINATION: develop
