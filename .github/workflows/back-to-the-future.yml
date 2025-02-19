@@ -2,13 +2,13 @@ name: Take master to develo on tag creation
 
 on:  
   push:
-    tags:
-      - '*'
+    branches:
+      - master
 
 jobs:
   create-pull-request:
     runs-on: ubuntu-latest
-    if: ${{  !contains( github.ref, 'RC') && !contains( github.ref, 'SNAPSHOT') }}
+    if: ${{  contains( github.ref, 'tags') && !contains( github.ref, 'RC') }}
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
