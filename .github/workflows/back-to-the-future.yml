@@ -2,14 +2,13 @@ name: Take master to develo on tag creation
 
 on:  
   push:
-    branches:
-      - master
     tags:
       - '*'
 
 jobs:
   create-pull-request:
     runs-on: ubuntu-latest
+    if: ${{ github.ref == 'refs/heads/master' }}
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
