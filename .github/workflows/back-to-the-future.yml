@@ -9,8 +9,8 @@ jobs:
   create-pull-request:
     runs-on: ubuntu-latest
     steps:
-      - name: Create pull request
-        run: gh pr create -B master -H develop --title 'Merge master into develop' --body 'Created by Github action'
+      - run: gh pr create -B master -H $DESTINATION --title 'Merge master into $DESTINATION' --body 'Created by Github action'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DESTINATION: develop
         
