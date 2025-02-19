@@ -16,7 +16,7 @@ jobs:
         with:
           fetch-depth: 0
           ref: master
-      - run: gh pr create -B $DESTINATION -H master --title 'Merge master into $DESTINATION ' --body 'Created by Github action'
+      - run: gh pr create -B $DESTINATION -H master --title "Merge master into $DESTINATION " --body "Created by Github action"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DESTINATION: develop
