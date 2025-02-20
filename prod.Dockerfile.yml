@@ -1,7 +1,7 @@
 FROM denoland/deno:ubuntu-2.1.7 AS builder
 ARG DENO_VERSION
 ENV DENO_VERSION=$DENO_VERSION
-ENV DENO_IMAGE = denoland/deno:ubuntu-$DENO_VERSION
+ENV DENO_IMAGE=denoland/deno:ubuntu-$DENO_VERSION
 
 WORKDIR /app
 
