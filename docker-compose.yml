@@ -4,7 +4,7 @@ services:
       context: ./
       dockerfile: prod.Dockerfile.yml
       args:
-        - DENO_VERSION=${DENO_VERSION:2.2.0}
+        - DENO_VERSION=${DENO_VERSION:-2.2.0}
     restart: always
     ports:
       - ${PORT}:3000
