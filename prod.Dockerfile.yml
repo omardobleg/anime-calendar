@@ -13,7 +13,7 @@ COPY . .
 
 RUN deno task build
 
-FROM denoland/deno:ubuntu-2.1.7
+FROM denoland/deno:ubuntu-${VERSION}
 
 WORKDIR /app
 
