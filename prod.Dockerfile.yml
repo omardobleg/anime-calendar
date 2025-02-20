@@ -17,7 +17,7 @@ COPY . .
 
 RUN deno task build
 
-FROM $DENO_IMAGE 
+FROM denoland/deno:ubuntu-2.2.0
 
 WORKDIR /app
 
