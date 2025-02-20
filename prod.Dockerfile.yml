@@ -5,7 +5,7 @@ ENV DENO_IMAGE=denoland/deno:ubuntu-$DENO_VERSION
 
 
 WORKDIR /app
-
+RUN echo "Deno $DENO_VERSION $DENO_IMAGE"
 RUN chown deno:deno /app/
 
 COPY package*.json .
