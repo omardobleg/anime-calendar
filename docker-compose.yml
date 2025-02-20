@@ -3,8 +3,6 @@ services:
     build:
       context: ./
       dockerfile: prod.Dockerfile.yml
-      args:
-        - DENO_VERSION=${DENO_VERSION:-2.2.0}
     restart: always
     ports:
       - ${PORT}:3000
@@ -12,9 +10,6 @@ services:
       - dokploy-network
     labels:
       - 'traefik.enable=true'
-  #  - 'traefik.http.routers.anime.entrypoints=web'
-  #  - 'traefik.http.routers.anime.rule=HostRegexp(`anime.{ip:.*}.traefik.me`)'
-  #  - 'traefik.http.services.anime.loadbalancer.server.port=${INTERNAL_PORT}'
 networks:
   dokploy-network:
     external: true
