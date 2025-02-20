@@ -5,7 +5,7 @@ services:
       dockerfile: prod.Dockerfile.yml
     restart: always
     environment:
-      DENO_VERSION: ${DENO_VERSION}
+      - DENO_VERSION=${DENO_VERSION}
     ports:
       - ${PORT}:3000
     networks:
