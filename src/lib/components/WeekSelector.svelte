@@ -1,8 +1,12 @@
 <script lang="ts">
-	const { active } = $props<{ active: number }>();
+	export interface WeekSelectorProps {
+		active: number;
+	}
+
+	const { active } :WeekSelectorProps= $props();
 	const weekDays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 	const today = new Date().getDay();
-	let offset = $derived(`calc(((100% - .5rem) / 7 ) * (${today + active}) + .25rem`);
+	let offset = $derived(`calc(((100% - .5rem) / 7 ) * (${today + active}) + .25rem)`);
 </script>
 
 <div

@@ -10,37 +10,43 @@
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
 		"format": "prettier --write .",
-		"lint": "prettier --check . && eslint ."
+		"lint": "prettier --check . && eslint .",
+		"test:unit": "vitest"
 	},
 	"devDependencies": {
 		"@eslint/compat": "1.2.5",
+		"@signaldb/core": "^1.2.0",
+		"@signaldb/devtools": "1.0.0-beta.4",
+		"@signaldb/localstorage": "^1.0.0",
 		"@sveltejs/adapter-node": "5.2.12",
 		"@sveltejs/kit": "2.16.1",
 		"@sveltejs/vite-plugin-svelte": "5.0.3",
+		"@vitest/browser": "^3.2.3",
 		"autoprefixer": "^10.4.20",
 		"eslint": "9.19.0",
-		"eslint-config-prettier": "^9.1.0",
-		"eslint-plugin-svelte": "^2.36.0",
-		"neverthrow": "8.1.1",
+		"eslint-config-prettier": "10.1.5",
 		"eslint-plugin-neverthrow": "1.1.4",
-		"globals": "^15.0.0",
+		"eslint-plugin-svelte": "3.10.1",
+		"globals": "16.2.0",
+		"jsdom": "^26.1.0",
+		"neverthrow": "8.1.1",
+		"playwright": "^1.53.0",
 		"prettier": "^3.3.2",
 		"prettier-plugin-svelte": "3.3.3",
 		"prettier-plugin-tailwindcss": "0.6.11",
-		"@signaldb/core": "^1.2.0",
-		"@signaldb/devtools": "1.0.0-beta.3",
-		"@signaldb/localstorage": "^1.0.0",
-		"svelte": "~5.19.3",
+		"svelte": "5.34.8",
 		"svelte-check": "4.1.4",
 		"tailwindcss": "4.0.0",
-		"typescript": "~5.7.3",
-		"typescript-eslint": "~8.21.0",
-		"vite": "~6.0.11"
+		"typescript": "5.8.3",
+		"typescript-eslint": "8.35.0",
+		"vite": "7.0.0",
+		"vitest": "^3.2.3",
+		"vitest-browser-svelte": "1.0.0"
 	},
 	"dependencies": {
 		"@tailwindcss/container-queries": "^0.1.1",
 		"@tailwindcss/forms": "^0.5.9",
 		"@tailwindcss/typography": "^0.5.15",
-		"@tailwindcss/vite": "~4.0.0"
+		"@tailwindcss/vite": "4.1.11"
 	}
 }
